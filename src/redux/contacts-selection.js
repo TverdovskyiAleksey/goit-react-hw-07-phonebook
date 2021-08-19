@@ -1,3 +1,23 @@
-export const getContacts = state => state.contacts.items;
+const getContacts = state => state.contacts.items;
 
-export const getFilter = state => state.contacts.filter;
+const getLoading = state => state.contacts.loading;
+
+const getFilter = state => state.contacts.filter;
+
+const getVisibleContacts = state => {
+  const contacts = getContacts(state);
+  const filter = getFilter(state);
+  const normalizedFilter = filter.toLowerCase();
+
+  return contacts.filter(({ name }) =>
+    name.toLowerCase().includes(normalizedFilter),
+  );
+};
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  getContacts,
+  getFilter,
+  getLoading,
+  getVisibleContacts,
+};
