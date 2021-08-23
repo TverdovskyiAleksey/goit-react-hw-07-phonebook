@@ -5,12 +5,12 @@ import Filter from './Filter';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import contactsOperation from './redux/contacts-operation';
+import { contactsOperations } from './redux';
 
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(contactsOperation.fetchContacts()), [dispatch]);
+  useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
 
   return (
     <Container>
@@ -24,6 +24,6 @@ function App() {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(contactsOperation.fetchContacts()),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 export default connect(null, mapDispatchToProps)(App);

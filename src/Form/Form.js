@@ -2,9 +2,8 @@ import { useState } from 'react';
 import shortid from 'shortid';
 import style from './Form.module.css';
 import { connect } from 'react-redux';
-import contactsOperation from '../redux/contacts-operation';
 import { useSelector, useDispatch } from 'react-redux';
-import contactsSelectors from '../redux/contacts-selection';
+import { contactsSelectors, contactsOperations } from '../redux';
 
 function Form() {
   const [name, setName] = useState('');
@@ -36,7 +35,7 @@ function Form() {
       return;
     }
 
-    dispatch(contactsOperation.addContact({ name, number }));
+    dispatch(contactsOperations.addContact({ name, number }));
     reset();
   };
 
@@ -81,7 +80,7 @@ function Form() {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (name, number) => dispatch(contactsOperation.addContact(name, number)),
+  onSubmit: (name, number) => dispatch(contactsOperations.addContact(name, number)),
 });
 
 export default connect(null, mapDispatchToProps)(Form);
